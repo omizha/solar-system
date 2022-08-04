@@ -1,14 +1,17 @@
 import * as THREE from "three";
-import { useTexture } from "@react-three/drei";
-import { useLoader, useThree } from "@react-three/fiber";
 import React, { useEffect, useRef } from "react";
+import { useTexture } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
 export const Sun = React.memo(() => {
     const sunRef = useRef<THREE.Group>();
 
-    const scene = useThree((state) => state.scene);
     const diffuse = useTexture("/model/sun/diffuse.png");
+
+    useFrame((_, delta) => {
+        sunRef.current.rotation.y += (delta * 2 * Math.PI) / 30;
+    });
 
     useEffect(() => {
         const func = async () => {
