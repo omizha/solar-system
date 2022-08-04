@@ -1,3 +1,4 @@
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { useLoader, useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 import * as THREE from "three";
@@ -15,7 +16,10 @@ export const Main = () => {
 
     return (
         <>
+            <PerspectiveCamera makeDefault position={[0, 0, -2000]} />
             <Sun />
+            <OrbitControls />
+            <ambientLight />
         </>
     );
 };
