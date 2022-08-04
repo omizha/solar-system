@@ -1,13 +1,17 @@
 import * as THREE from "three";
-import { useTexture } from "@react-three/drei";
 import React, { useEffect, useRef } from "react";
+import { GroupProps, useFrame } from "@react-three/fiber";
+import { useTexture } from "@react-three/drei";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
-import { GroupProps } from "@react-three/fiber";
 
 export const Moon = React.memo((props?: GroupProps) => {
     const moonRef = useRef<THREE.Group>();
 
     const diffuse = useTexture("/model/moon/diffuse.png");
+
+    useFrame((_, delta) => {
+        moonRef.current.rotation.y += (delta * 2 * Math.PI) / 27;
+    });
 
     useEffect(() => {
         const func = async () => {
