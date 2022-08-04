@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import { useTexture } from "@react-three/drei";
 import React, { useEffect, useRef } from "react";
+import { GroupProps, useFrame } from "@react-three/fiber";
+import { useTexture } from "@react-three/drei";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
-import { GroupProps } from "@react-three/fiber";
 
 export const Earth = React.memo((props?: GroupProps) => {
     const earthRef = useRef<THREE.Group>();
@@ -11,6 +11,10 @@ export const Earth = React.memo((props?: GroupProps) => {
         "/model/earth/diffuse.png",
         "/model/earth/normal.png",
     ]);
+
+    useFrame((_, delta) => {
+        earthRef.current.rotation.y += (delta * 2 * Math.PI) / 1;
+    });
 
     useEffect(() => {
         const func = async () => {
