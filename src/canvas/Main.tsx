@@ -30,9 +30,9 @@ export const Main = () => {
             />
             <group ref={sunOrbitRef}>
                 <Sun />
-                <group ref={earthOrbitRef} position={[-2000, 0, 0]}>
+                <group ref={earthOrbitRef} position={[-1000, 0, 0]}>
                     <Earth scale={0.25} />
-                    <group position={[500, 0, 0]}>
+                    <group position={[250, 0, 0]}>
                         <Moon scale={0.1} />
                     </group>
                 </group>
