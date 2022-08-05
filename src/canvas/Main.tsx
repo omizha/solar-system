@@ -1,6 +1,10 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import {
+    OrbitControls,
+    PerspectiveCamera,
+    useTexture,
+} from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { Earth } from "./model/Earth";
 import { Sun } from "./model/Sun";
@@ -11,6 +15,8 @@ export const Main = () => {
     const earthOrbitRef = useRef<THREE.Group>();
 
     const scene = useThree((state) => state.scene);
+
+    const skyboxBg = useTexture("/texture/crab_nebula.png");
 
     useEffect(() => {
         scene.background = new THREE.Color("#000");
@@ -37,6 +43,14 @@ export const Main = () => {
                     </group>
                 </group>
             </group>
+            <mesh>
+                <sphereGeometry attach="geometry" args={[5000, 32, 32]} />
+                <meshStandardMaterial
+                    attach="material"
+                    map={skyboxBg}
+                    side={THREE.DoubleSide}
+                />
+            </mesh>
             <OrbitControls />
             <ambientLight />
         </>
