@@ -40,7 +40,9 @@ export const Sun = React.memo(() => {
 
     return (
         <>
-            <group ref={sunRef} name="sun"></group>
+            <group ref={sunRef} name="sun">
+                <pointLight args={["orange", 10, 3000]} />
+            </group>
         </>
     );
 });
