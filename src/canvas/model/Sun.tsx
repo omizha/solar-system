@@ -3,11 +3,22 @@ import React, { useEffect, useRef } from "react";
 import { useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
+import { useControls } from "leva";
 
 export const Sun = React.memo(() => {
     const sunRef = useRef<THREE.Group>();
+    const sunlightRef = useRef<THREE.PointLight>();
 
     const diffuse = useTexture("/model/sun/diffuse.png");
+
+    useControls("pointLight", {
+        intensity: {
+            value: 10,
+            onChange: (value) => {
+                sunlightRef.current.intensity = value;
+            },
+        },
+    });
 
     useFrame((_, delta) => {
         sunRef.current.rotation.y += (delta * 2 * Math.PI) / 30;
@@ -41,7 +52,7 @@ export const Sun = React.memo(() => {
     return (
         <>
             <group ref={sunRef} name="sun">
-                <pointLight args={["orange", 10, 3000]} />
+                <pointLight ref={sunlightRef} args={["orange", 10, 3000]} />
             </group>
         </>
     );
