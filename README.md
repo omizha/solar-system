@@ -14,3 +14,9 @@
 4. Solar System Project 시작
     - 프로젝트에서 `npm start` 명령어 입력
     - 브라우저에서 http://localhost:3000 링크를 클릭하여 시작
+
+## Control
+- Three.js의 OrbitControls와 조작법이 비슷합니다.
+- mouse left drag : Camera rotating
+- mouse right drag : Camera panning
+- mouse scroll : Zoom in/out
