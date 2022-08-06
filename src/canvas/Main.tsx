@@ -21,7 +21,7 @@ export const Main = () => {
     const skyboxBg = useTexture("/texture/crab_nebula.png");
 
     useControls("camera", {
-        autoRatate: {
+        autoRotate: {
             value: false,
             onChange: (value) => {
                 orbitControlRef.current.autoRotate = value;
