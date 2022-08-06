@@ -38,9 +38,7 @@ export const Main = () => {
                 <Sun />
                 <group ref={earthOrbitRef} position={[-1000, 0, 0]}>
                     <Earth scale={0.25} />
-                    <group position={[250, 0, 0]}>
-                        <Moon scale={0.1} />
-                    </group>
+                    <Moon position={[250, 0, 0]} scale={0.1} />
                 </group>
             </group>
             <mesh>
