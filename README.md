@@ -5,6 +5,9 @@
     <img src="https://img.shields.io/badge/tech-ThreeJS-lightgrey" />
 </p>
 
+## Demo
+- https://solar-system-omizha.vercel.app/
+
 ## Run
 1. Git 설치
 2. Node LTS 설치
