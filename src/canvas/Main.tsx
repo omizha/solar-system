@@ -6,17 +6,28 @@ import {
     useTexture,
 } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
+import { useControls } from "leva";
 import { Earth } from "./model/Earth";
 import { Sun } from "./model/Sun";
 import { Moon } from "./model/Moon";
 
 export const Main = () => {
+    const orbitControlRef = useRef<any>();
     const sunOrbitRef = useRef<THREE.Group>();
     const earthOrbitRef = useRef<THREE.Group>();
 
     const scene = useThree((state) => state.scene);
 
     const skyboxBg = useTexture("/texture/crab_nebula.png");
+
+    useControls("camera", {
+        autoRatate: {
+            value: false,
+            onChange: (value) => {
+                orbitControlRef.current.autoRotate = value;
+            },
+        },
+    });
 
     useEffect(() => {
         scene.background = new THREE.Color("#000");
@@ -49,7 +60,7 @@ export const Main = () => {
                     side={THREE.DoubleSide}
                 />
             </mesh>
-            <OrbitControls />
+            <OrbitControls ref={orbitControlRef} />
             <ambientLight />
         </>
     );
