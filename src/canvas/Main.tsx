@@ -12,6 +12,7 @@ import { Sun } from "./model/Sun";
 import { Moon } from "./model/Moon";
 
 export const Main = () => {
+    const cameraRef = useRef<THREE.PerspectiveCamera>();
     const orbitControlRef = useRef<any>();
     const sunOrbitRef = useRef<THREE.Group>();
     const earthOrbitRef = useRef<THREE.Group>();
@@ -25,6 +26,13 @@ export const Main = () => {
             value: false,
             onChange: (value) => {
                 orbitControlRef.current.autoRotate = value;
+            },
+        },
+        position: {
+            value: [0, 4000, -1000],
+            onChange: (value) => {
+                // @ts-ignore
+                cameraRef.current.position.set(...value);
             },
         },
     });
@@ -41,6 +49,7 @@ export const Main = () => {
     return (
         <>
             <PerspectiveCamera
+                ref={cameraRef}
                 makeDefault
                 position={[0, 4000, -1000]}
                 far={10000}
